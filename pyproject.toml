@@ -1,0 +1,23 @@
+[project]
+name = "adressevaelger"
+version = "0.1.0"
+description = "Client library for accessing 'Adressevælger' Web API"
+readme = "README.md"
+authors = [
+    { name = "Erik Petersen", email = "eht@it-trans.dk" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "dacite>=1.9.2",
+    "requests>=2.34.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.8,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "responses>=0.26.0",
+]
