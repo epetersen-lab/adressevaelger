@@ -1,12 +1,44 @@
 from .client import Client
 from .exceptions import ApiConnectionError, ApiError, ApiUnkownError
-from .models import Adressesoegning, Fund
+from .models import (
+    CRS,
+    Adgangspunkt,
+    Adresse,
+    Adressesoegning,
+    CRSProperties,
+    Fund,
+    Geometri,
+    Husnummer,
+    Husnummeropslag,
+    Husnummersoegning,
+    Koordinater,
+    NavngivenVej,
+    NavngivenVejKommunedel,
+    NavngivenVejPostnummer,
+    Postnummer,
+    SupplerendeBynavn,
+)
 
 __all__ = [
     "Client",
-    "Fund",
     "ApiError",
     "ApiUnkownError",
     "ApiConnectionError",
     "Adressesoegning",
+    "CRS",
+    "Adgangspunkt",
+    "Adresse",
+    "Adressesoegning",
+    "CRSProperties",
+    "Fund",
+    "Geometri",
+    "Husnummer",
+    "Husnummeropslag",
+    "Husnummersoegning",
+    "Koordinater",
+    "NavngivenVej",
+    "NavngivenVejKommunedel",
+    "NavngivenVejPostnummer",
+    "Postnummer",
+    "SupplerendeBynavn",
 ]

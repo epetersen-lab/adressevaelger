@@ -12,7 +12,7 @@ Client library for accessing "Adressevælger" Web API.
 
 ```python
 import adressevaelger
-from adressevaelger.models import Adressesoegning, Husnummersoegning
+from adressevaelger import Adressesoegning, Husnummersoegning
 
 
 def main():
