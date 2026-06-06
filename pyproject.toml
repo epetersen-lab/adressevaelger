@@ -18,6 +18,10 @@ classifiers = [
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
+[project.urls]
+Homepage = "https://github.com/epetersen-lab/adressevaelger"
+Issues = "https://github.com/epetersen-lab/adressevaelger/issues"
+
 [build-system]
 requires = ["uv_build>=0.9.8,<0.10.0"]
 build-backend = "uv_build"
