@@ -9,7 +9,8 @@ Client library for accessing "Adressevælger" Web API.
 
 
 ## Example
-´´´python
+
+```python
 import adressevaelger
 from adressevaelger.models import Adressesoegning, Husnummersoegning
 
