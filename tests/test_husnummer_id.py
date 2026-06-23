@@ -6,6 +6,8 @@ import adressevaelger
 
 
 class TestHusnummerId:
+
+    @responses.activate
     def test_husnummer_id(self, client: adressevaelger.Client):
         id = "0a3f5090-48fe-32b8-e044-0003ba298018"
         response_body = """{ 
@@ -42,7 +44,7 @@ class TestHusnummerId:
                         "y": 6152135.2
                     }
                 },
-                "postnummer": 
+                "postnummer": {
                 "id_lokalid": "3a6b09ec-cfd7-4cc9-8eed-d9f3f0e4978a",
                 "navn": "Kolding",
                 "postnr": "6000",
@@ -89,7 +91,7 @@ class TestHusnummerId:
                 }
             }
         }"""
-        responses.add("GET", client.base_url + "husnumre/" + id, body=response_body)
+        responses.add("GET", client.base_url + "/husnumre/" + id, body=response_body)
 
         husnummer = client.husnummer_id(id)
         assert husnummer is not None

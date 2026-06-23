@@ -6,6 +6,8 @@ import adressevaelger
 
 
 class TestAdresseId:
+
+    @responses.activate
     def test_adresse_id(self, client: adressevaelger.Client):
         id = "197b47fd-050a-40cb-85a9-11418e009374"
         response_body = """{
@@ -100,7 +102,7 @@ class TestAdresseId:
                 }
             }
         }"""
-        responses.add("GET", client.base_url + "adresser/" + id, body=response_body)
+        responses.add("GET", client.base_url + "/adresser/" + id, body=response_body)
 
         adresse = client.adresse_id(id)
         assert adresse is not None
