@@ -30,9 +30,10 @@ def parse_iso_z(value: str) -> datetime:
 
 
 class Client:
-    def __init__(self, token: str = "adressevaelger123") -> None:
+    def __init__(self, token: str = "adressevaelger123", ssl_verify: bool = True) -> None:
         self.base_url = "https://adressevaelger.dk"
         self.token = token
+        self.ssl_verify = ssl_verify
 
     def _request(self, method: str, path: str, headers: dict = {}, params: dict = {}):
         headers.update({"Accept": "application/json"})
@@ -43,6 +44,7 @@ class Client:
                 url=self.base_url + f"/{path}",
                 headers=headers,
                 params=params,
+                verify=self.ssl_verify,
             )
             logger.debug(f"Requ: {response.request.url}")
             logger.debug(
