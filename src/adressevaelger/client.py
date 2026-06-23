@@ -30,8 +30,13 @@ def parse_iso_z(value: str) -> datetime:
 
 
 class Client:
-    def __init__(self, token: str = "adressevaelger123", ssl_verify: bool = True) -> None:
-        self.base_url = "https://adressevaelger.dk"
+    def __init__(
+        self,
+        base_url: str = "https://adressevaelger.dk",
+        token: str = "adressevaelger123",
+        ssl_verify: bool = True,
+    ) -> None:
+        self.base_url = base_url
         self.token = token
         self.ssl_verify = ssl_verify
 
