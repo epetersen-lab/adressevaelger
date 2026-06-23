@@ -8,7 +8,7 @@ from adressevaelger.models import Adressesoegning
 
 
 class TestClient:
-    def test_default_url(self, client: adressevaelger.Client):
+    def test_base_url_for_test(self, client: adressevaelger.Client):
         assert client.base_url == "https://adressevaelger.local"
 
     def test_default_token(self, client: adressevaelger.Client):
