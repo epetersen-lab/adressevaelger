@@ -59,7 +59,7 @@ class Client:
             return response
         except requests.ConnectionError as err:
             logger.exception(err)
-            raise ApiConnectionError(err.strerror) from err
+            raise ApiConnectionError(str(err)) from err
         except requests.HTTPError as err:
             logger.exception(err)
             raise ApiError(response.text) from err
