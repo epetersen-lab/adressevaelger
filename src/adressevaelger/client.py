@@ -39,12 +39,13 @@ class Client:
         self.base_url = base_url
         self.token = token
         self.ssl_verify = ssl_verify
+        self.session = requests.Session()
 
     def _request(self, method: str, path: str, headers: dict = {}, params: dict = {}):
         headers.update({"Accept": "application/json"})
         params.update({"token": self.token})
         try:
-            response = requests.request(
+            response = self.session.request(
                 method=method,
                 url=self.base_url + f"/{path}",
                 headers=headers,
