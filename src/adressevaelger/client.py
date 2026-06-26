@@ -5,6 +5,8 @@ from typing import List, Optional
 
 import requests
 from dacite import Config, from_dict
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 from .exceptions import ApiConnectionError, ApiError
 from .models import (
@@ -40,6 +42,15 @@ class Client:
         self.token = token
         self.ssl_verify = ssl_verify
         self.session = requests.Session()
+        retry_strategy = Retry(
+            total=3,
+            status_forcelist=[429, 502, 503, 504],
+            allowed_methods={"GET"},
+            backoff_factor=1,
+        )
+        adapter = HTTPAdapter(max_retries=retry_strategy)
+        self.session.mount("https://", adapter)
+        self.session.mount("http://", adapter)
 
     def _request(self, method: str, path: str, headers: dict = {}, params: dict = {}):
         headers.update({"Accept": "application/json"})
