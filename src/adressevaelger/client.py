@@ -84,10 +84,6 @@ class Client:
             response = self._request("GET", "adresser/soeg", params=asdict(soegning))
         elif isinstance(soegning, Husnummersoegning):
             response = self._request("GET", "husnumre/soeg", params=asdict(soegning))
-        else:
-            raise ValueError(
-                "Parameter must be of type Adressesoegning or HusnummerSoegning"
-            )
         result = from_dict(data_class=Soegeresultat, data=response.json())
         if result.status == "ok":
             return result.fund
