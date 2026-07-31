@@ -1,9 +1,15 @@
+from time import time
 import pytest
 import requests
 import responses
 
 import adressevaelger
-from adressevaelger.exceptions import ApiConnectionError, ApiError
+from adressevaelger.exceptions import (
+    ApiConnectionError,
+    ApiError,
+    ApiTooManyRequests,
+    ApiRetryError,
+)
 from adressevaelger.models import Adressesoegning
 
 
@@ -30,7 +36,36 @@ class TestClient:
             method=responses.GET,
             url=client.base_url + f"/adresser/soeg?token={client.token}",
             body="",
-            status=500
+            status=500,
         )
         with pytest.raises(ApiError):
+            client.soeg_fonetisk(Adressesoegning())
+
+    @responses.activate
+    def test_too_many_requests_backoff(self, client: adressevaelger.Client):
+        responses.add(
+            method=responses.GET,
+            url=client.base_url + f"/adresser/soeg?token={client.token}",
+            body="",
+            status=429,
+        )
+        start_time = time()
+        with pytest.raises(ApiTooManyRequests):
+            client.soeg_fonetisk(Adressesoegning())
+
+        #  Check the backoff time (Simplified)
+        #  Depends on the client initialization parameters in conftest.py
+        #  2 retries with initial backoff of 1 seconds equals to 1 + 2 + 4 = 7
+        diff_time = time() - start_time
+        assert 7 >= diff_time < 8
+
+    @responses.activate
+    def test_retry_error(self, client: adressevaelger.Client):
+        responses.add(
+            responses.GET,
+            url=client.base_url + f"/adresser/soeg?token={client.token}",
+            body="",
+            status=503,
+        )
+        with pytest.raises(ApiRetryError):
             client.soeg_fonetisk(Adressesoegning())

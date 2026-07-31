@@ -1,5 +1,11 @@
 from .client import Client
-from .exceptions import ApiConnectionError, ApiError, ApiUnkownError
+from .exceptions import (
+    ApiConnectionError,
+    ApiError,
+    ApiRetryError,
+    ApiTooManyRequests,
+    ApiUnkownError,
+)
 from .models import (
     CRS,
     Adgangspunkt,
@@ -22,6 +28,8 @@ from .models import (
 __all__ = [
     "Client",
     "ApiError",
+    "ApiRetryError",
+    "ApiTooManyRequests",
     "ApiUnkownError",
     "ApiConnectionError",
     "Adressesoegning",

@@ -8,5 +8,13 @@ class ApiConnectionError(ApiError):
     pass
 
 
+class ApiRetryError(ApiError):
+    pass
+
+
+class ApiTooManyRequests(ApiError):
+    pass
+
+
 class ApiUnkownError(ApiError):
     pass
