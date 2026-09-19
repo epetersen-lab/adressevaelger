@@ -4,7 +4,6 @@ from .exceptions import (
     ApiError,
     ApiRetryError,
     ApiTooManyRequests,
-    ApiUnkownError,
 )
 from .models import (
     CRS,
@@ -30,7 +29,6 @@ __all__ = [
     "ApiError",
     "ApiRetryError",
     "ApiTooManyRequests",
-    "ApiUnkownError",
     "ApiConnectionError",
     "Adressesoegning",
     "CRS",

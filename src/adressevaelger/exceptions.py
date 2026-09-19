@@ -14,7 +14,3 @@ class ApiRetryError(ApiError):
 
 class ApiTooManyRequests(ApiError):
     pass
-
-
-class ApiUnkownError(ApiError):
-    pass
