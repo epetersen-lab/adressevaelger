@@ -2,7 +2,6 @@ import logging
 from dataclasses import asdict
 from datetime import datetime, timezone
 from time import sleep
-from typing import List, Optional
 
 import requests
 from dacite import Config, from_dict
@@ -96,7 +95,7 @@ class Client:
 
     def soeg_fonetisk(
         self, soegning: Adressesoegning | Husnummersoegning
-    ) -> List[Fund]:
+    ) -> list[Fund]:
         """Search for 'Adresser' or 'Husnumre'."""
         if isinstance(soegning, Adressesoegning):
             response = self._request("GET", "adresser/soeg", params=_clean_params(soegning))
@@ -120,7 +119,7 @@ class Client:
         else:
             return None
 
-    def adresse_id(self, adresse_id: str) -> Optional[Adresse]:
+    def adresse_id(self, adresse_id: str) -> Adresse | None:
         """Lookup 'Adresse' by id."""
         config = Config(type_hooks={datetime: parse_iso_z})
         response = self._request("GET", f"adresser/{adresse_id}")

@@ -1,43 +1,42 @@
 import datetime
-from dataclasses import dataclass, asdict
-from typing import List, Optional
+from dataclasses import asdict, dataclass
 
 
 @dataclass
 class Adressesoegning:
-    tekst: Optional[str] = None
-    vejnavn: Optional[str] = None
-    husnummer: Optional[str] = None
-    postnummer: Optional[str] = None
-    kommunekode: Optional[str] = None
-    medtagforeloebige: Optional[str] = None
-    etage: Optional[str] = None
-    doer: Optional[str] = None
-    maksimum: Optional[int] = None
+    tekst: str | None = None
+    vejnavn: str | None = None
+    husnummer: str | None = None
+    postnummer: str | None = None
+    kommunekode: str | None = None
+    medtagforeloebige: str | None = None
+    etage: str | None = None
+    doer: str | None = None
+    maksimum: int | None = None
 
 
 @dataclass
 class Husnummersoegning:
-    tekst: Optional[str] = None
-    vejnavn: Optional[str] = None
-    husnummer: Optional[str] = None
-    postnummer: Optional[str] = None
-    kommunekode: Optional[str] = None
-    medtagforeloebige: Optional[str] = None
-    maksimum: Optional[int] = None
+    tekst: str | None = None
+    vejnavn: str | None = None
+    husnummer: str | None = None
+    postnummer: str | None = None
+    kommunekode: str | None = None
+    medtagforeloebige: str | None = None
+    maksimum: int | None = None
 
 
 @dataclass
 class Fund:
     type: str
     id: str
-    titel: Optional[str] = None
-    vejnavn: Optional[str] = None
-    husnummer: Optional[str] = None
-    postnr: Optional[str] = None
-    postdistrikt: Optional[str] = None
-    antal_husnumre: Optional[int] = None
-    husnummerId: Optional[str] = None
+    titel: str | None = None
+    vejnavn: str | None = None
+    husnummer: str | None = None
+    postnr: str | None = None
+    postdistrikt: str | None = None
+    antal_husnumre: int | None = None
+    husnummerId: str | None = None
 
     def asdict(self):
         return asdict(self)
@@ -47,117 +46,117 @@ class Fund:
 class Soegeresultat:
     status: str
     beskrivelse: str
-    fund: List[Fund]
+    fund: list[Fund]
 
 
 @dataclass
 class Koordinater:
-    x: Optional[float]
-    y: Optional[float]
+    x: float | None
+    y: float | None
 
 
 @dataclass
 class CRSProperties:
-    name: Optional[str]
+    name: str | None
 
 
 @dataclass
 class CRS:
-    type: Optional[str]
-    properties: Optional[CRSProperties]
+    type: str | None
+    properties: CRSProperties | None
 
 
 @dataclass
 class Geometri:
-    type: Optional[str]
-    crs: Optional[CRS]
-    coordinates: Optional[List[float]]
+    type: str | None
+    crs: CRS | None
+    coordinates: list[float] | None
 
 
 @dataclass
 class Adgangspunkt:
-    id_lokalid: Optional[str]
-    status: Optional[str]
-    virkningfra: Optional[datetime.datetime]
-    virkningtil: Optional[datetime.datetime]
-    registreringfra: Optional[datetime.datetime]
-    registreringtil: Optional[datetime.datetime]
-    geometri: Optional[Geometri]
-    koordinater: Optional[Koordinater]
+    id_lokalid: str | None
+    status: str | None
+    virkningfra: datetime.datetime | None
+    virkningtil: datetime.datetime | None
+    registreringfra: datetime.datetime | None
+    registreringtil: datetime.datetime | None
+    geometri: Geometri | None
+    koordinater: Koordinater | None
 
 
 @dataclass
 class Postnummer:
-    id_lokalid: Optional[str]
-    navn: Optional[str]
-    postnr: Optional[str]
-    status: Optional[str]
-    virkningfra: Optional[datetime.datetime]
-    virkningtil: Optional[datetime.datetime]
-    registreringfra: Optional[datetime.datetime]
-    registreringtil: Optional[datetime.datetime]
+    id_lokalid: str | None
+    navn: str | None
+    postnr: str | None
+    status: str | None
+    virkningfra: datetime.datetime | None
+    virkningtil: datetime.datetime | None
+    registreringfra: datetime.datetime | None
+    registreringtil: datetime.datetime | None
 
 
 @dataclass()
 class NavngivenVej:
-    id_lokalid: Optional[str]
-    vejnavn: Optional[str]
-    virkningfra: Optional[datetime.datetime]
-    virkningtil: Optional[datetime.datetime]
-    registreringfra: Optional[datetime.datetime]
-    registreringtil: Optional[datetime.datetime]
+    id_lokalid: str | None
+    vejnavn: str | None
+    virkningfra: datetime.datetime | None
+    virkningtil: datetime.datetime | None
+    registreringfra: datetime.datetime | None
+    registreringtil: datetime.datetime | None
 
 
 @dataclass()
 class NavngivenVejKommunedel:
-    id_lokalid: Optional[str]
-    kommune: Optional[str]
-    vejkode: Optional[str]
-    navngivenvej: Optional[str]
-    virkningfra: Optional[datetime.datetime]
-    virkningtil: Optional[datetime.datetime]
-    registreringfra: Optional[datetime.datetime]
-    registreringtil: Optional[datetime.datetime]
+    id_lokalid: str | None
+    kommune: str | None
+    vejkode: str | None
+    navngivenvej: str | None
+    virkningfra: datetime.datetime | None
+    virkningtil: datetime.datetime | None
+    registreringfra: datetime.datetime | None
+    registreringtil: datetime.datetime | None
 
 
 @dataclass()
 class NavngivenVejPostnummer:
-    id_lokalid: Optional[str]
-    virkningfra: Optional[datetime.datetime]
-    virkningtil: Optional[datetime.datetime]
-    registreringfra: Optional[datetime.datetime]
-    registreringtil: Optional[datetime.datetime]
+    id_lokalid: str | None
+    virkningfra: datetime.datetime | None
+    virkningtil: datetime.datetime | None
+    registreringfra: datetime.datetime | None
+    registreringtil: datetime.datetime | None
 
 
 @dataclass()
 class SupplerendeBynavn:
-    id_lokalid: Optional[str]
-    status: Optional[str]
-    supplerendebynavn: Optional[str]
-    navn: Optional[str]
-    virkningfra: Optional[datetime.datetime]
-    virkningtil: Optional[datetime.datetime]
-    registreringfra: Optional[datetime.datetime]
-    registreringtil: Optional[datetime.datetime]
+    id_lokalid: str | None
+    status: str | None
+    supplerendebynavn: str | None
+    navn: str | None
+    virkningfra: datetime.datetime | None
+    virkningtil: datetime.datetime | None
+    registreringfra: datetime.datetime | None
+    registreringtil: datetime.datetime | None
 
 
 @dataclass
 class Husnummer:
     id_lokalid: str
-    husnummertekst: Optional[str]
-    adgangsadressebetegnelse: Optional[str]
-    vejnavn: Optional[str]
-    status: Optional[str]
-    virkningfra: Optional[datetime.datetime]
-    virkningtil: Optional[datetime.datetime]
-    registreringfra: Optional[datetime.datetime]
-    registreringtil: Optional[datetime.datetime]
-    adgangspunkt: Optional[Adgangspunkt]
-    postnummer: Optional[Postnummer]
-    navngivenvej: Optional[NavngivenVej]
-    navngivenvejkommunedel: Optional[NavngivenVejKommunedel]
-    navngivenvejpostnummer: Optional[NavngivenVejPostnummer]
-    supplerendebynavn: Optional[SupplerendeBynavn]
+    husnummertekst: str | None
+    adgangsadressebetegnelse: str | None
+    vejnavn: str | None
+    status: str | None
+    virkningfra: datetime.datetime | None
+    virkningtil: datetime.datetime | None
+    registreringfra: datetime.datetime | None
+    registreringtil: datetime.datetime | None
+    adgangspunkt: Adgangspunkt | None
+    postnummer: Postnummer | None
+    navngivenvej: NavngivenVej | None
+    navngivenvejkommunedel: NavngivenVejKommunedel | None
+    navngivenvejpostnummer: NavngivenVejPostnummer | None
+    supplerendebynavn: SupplerendeBynavn | None
 
 
 @dataclass
@@ -169,18 +168,18 @@ class Husnummeropslag:
 @dataclass
 class Adresse:
     id_lokalid: str
-    adressebetegnelse: Optional[str]
-    etagebetegnelse: Optional[str]
-    doerbetegnelse: Optional[str]
-    status: Optional[str]
-    virkningfra: Optional[datetime.datetime]
-    virkningtil: Optional[datetime.datetime]
-    registreringfra: Optional[datetime.datetime]
-    registreringtil: Optional[datetime.datetime]
-    husnummer: Optional[Husnummer]
+    adressebetegnelse: str | None
+    etagebetegnelse: str | None
+    doerbetegnelse: str | None
+    status: str | None
+    virkningfra: datetime.datetime | None
+    virkningtil: datetime.datetime | None
+    registreringfra: datetime.datetime | None
+    registreringtil: datetime.datetime | None
+    husnummer: Husnummer | None
 
 
 @dataclass
 class Adresseopslag:
-    status: Optional[str]
-    adresse: Optional[Adresse]
+    status: str | None
+    adresse: Adresse | None
