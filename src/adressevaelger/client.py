@@ -81,12 +81,12 @@ class Client:
                 return response
 
             except requests.ConnectionError as err:
-                logger.exception(err)
+                logger.exception("An ConnectionError occured")
                 if retry_count >= self.max_retries:
                     raise ApiConnectionError(err.strerror) from err
 
             except requests.HTTPError as err:
-                logger.exception(err)
+                logger.exception("An HTTPError occured")
                 if response.status_code == 429:
                     if retry_count >= self.max_retries:
                         raise ApiTooManyRequests("Too many requests") from err
