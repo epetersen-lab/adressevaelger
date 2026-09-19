@@ -66,6 +66,7 @@ class Client:
                     url=self.base_url + f"/{path}",
                     headers=headers,
                     params=params,
+                    verify=self.ssl_verify,
                 )
                 logger.debug(f"Requ: {response.request.url}")
                 logger.debug(
