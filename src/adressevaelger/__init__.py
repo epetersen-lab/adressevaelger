@@ -30,7 +30,6 @@ __all__ = [
     "ApiRetryError",
     "ApiTooManyRequests",
     "ApiConnectionError",
-    "Adressesoegning",
     "CRS",
     "Adgangspunkt",
     "Adresse",
