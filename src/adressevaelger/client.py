@@ -61,7 +61,7 @@ class Client:
         while retry_count < self.max_retries:
             retry_count += 1
             try:
-                response = requests.request(
+                response = self.session.request(
                     method=method,
                     url=self.base_url + f"/{path}",
                     headers=headers,
