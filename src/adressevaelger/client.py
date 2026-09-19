@@ -35,6 +35,11 @@ def parse_iso_z(value: str) -> datetime:
     return datetime.fromisoformat(value)
 
 
+def _clean_params(obj) -> dict:
+    """Convert dataclass to dict, excluding None and empty-string values."""
+    return {k: v for k, v in asdict(obj).items() if v is not None and v != ""}
+
+
 class Client:
     def __init__(
         self,
@@ -94,9 +99,9 @@ class Client:
     ) -> List[Fund]:
         """Search for 'Adresser' or 'Husnumre'."""
         if isinstance(soegning, Adressesoegning):
-            response = self._request("GET", "adresser/soeg", params=asdict(soegning))
+            response = self._request("GET", "adresser/soeg", params=_clean_params(soegning))
         elif isinstance(soegning, Husnummersoegning):
-            response = self._request("GET", "husnumre/soeg", params=asdict(soegning))
+            response = self._request("GET", "husnumre/soeg", params=_clean_params(soegning))
         result = from_dict(data_class=Soegeresultat, data=response.json())
         if result.status == "ok":
             return result.fund
