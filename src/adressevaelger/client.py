@@ -52,14 +52,19 @@ class Client:
         self.token = token
         self.ssl_verify = ssl_verify
         self.session = requests.Session()
+        self.session.headers.update({"Accept": "application/json"})
         self.max_retries = max_retries
         self.initial_backoff = initial_backoff
 
     def _request(
-        self, method: str, path: str, headers: dict = {}, params: dict = {}
+        self,
+        method: str,
+        path: str,
+        headers: dict | None = None,
+        params: dict[str, str] | None = None,
     ) -> requests.Response:
-        headers.update({"Accept": "application/json"})
-        params.update({"token": self.token})
+        headers = {} if headers is None else headers
+        params = {} if params is None else params | {"token": self.token}
         retry_count = -1
         backoff_seconds = self.initial_backoff
         while retry_count < self.max_retries:
