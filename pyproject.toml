@@ -1,6 +1,6 @@
 [project]
 name = "adressevaelger"
-version = "0.2.1"
+version = "0.2.2"
 description = "Client library for accessing 'Adressevælger' Web API"
 readme = "README.md"
 authors = [
