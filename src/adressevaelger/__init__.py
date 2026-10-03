@@ -25,16 +25,16 @@ from .models import (
 )
 
 __all__ = [
-    "Client",
-    "ApiError",
-    "ApiRetryError",
-    "ApiTooManyRequests",
-    "ApiConnectionError",
     "CRS",
     "Adgangspunkt",
     "Adresse",
     "Adressesoegning",
+    "ApiConnectionError",
+    "ApiError",
+    "ApiRetryError",
+    "ApiTooManyRequests",
     "CRSProperties",
+    "Client",
     "Fund",
     "Geometri",
     "Husnummer",
