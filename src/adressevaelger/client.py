@@ -92,6 +92,8 @@ class Client:
 
             except requests.HTTPError as err:
                 logger.exception("An HTTPError occured")
+                if response.status_code == 400:
+                    raise ApiError(response.text) from err
                 if response.status_code == 429:
                     if retry_count >= self.max_retries:
                         raise ApiTooManyRequests("Too many requests") from err

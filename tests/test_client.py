@@ -42,6 +42,17 @@ class TestClient:
             client.soeg_fonetisk(Adressesoegning())
 
     @responses.activate
+    def test_http_error_400(self, client: adressevaelger.Client):
+        responses.add(responses.GET,
+                      url=client.base_url + f"/adresser/soeg?token={client.token}",
+                      body="Mangler nødvendig queryparameter: token",
+                      status=400
+                      )
+        with pytest.raises(ApiError) as excinfo:
+            client.soeg_fonetisk(Adressesoegning())
+        assert str(excinfo.value) == "Mangler nødvendig queryparameter: token"
+
+    @responses.activate
     def test_too_many_requests_backoff(self, client: adressevaelger.Client):
         responses.add(
             method=responses.GET,
@@ -69,3 +80,5 @@ class TestClient:
         )
         with pytest.raises(ApiRetryError):
             client.soeg_fonetisk(Adressesoegning())
+
+
