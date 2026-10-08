@@ -64,7 +64,8 @@ class Client:
         params: dict[str, str] | None = None,
     ) -> requests.Response:
         headers = {} if headers is None else headers
-        params = {} if params is None else params | {"token": self.token}
+        params = {} if params is None else params
+        params.update({"token": self.token})
         retry_count = -1
         backoff_seconds = self.initial_backoff
         while retry_count < self.max_retries:
